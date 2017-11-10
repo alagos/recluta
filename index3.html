@@ -1,0 +1,90 @@
+<html>
+<body>
+  <h4>Pregunta 3:</h4>
+  <p>Por último, quisiera que me digas cual es tu nombre</p>
+  <span>
+    <button id="choose" style="width: 300px; height: 32px;">Mi nombre es:</button>
+    <h1 id="candidate"></h1>
+  </span>
+  <p><a href="https://goo.gl/forms/3CFPF6UyrRv1L1I92">Se cual es mi nombre, ¿donde firmo?</a></p>
+  <p><a href="https://goo.gl/forms/AKo3Wweb1AzQCAqr2">Al parecer me llamo Alter, de todas formas quiero que sepas de mi</a></p>
+</body>
+<script>
+  levelMap = {
+    'easy': 1,
+    'medium': .1,
+    'hard': .001
+  }
+
+  getSetting = function(key, settings) {
+    settings = settings.split("&")
+    for(i = 0; i<settings.length; i++){
+      setting = settings[i];
+      if(setting.length <= 'level=medium'.length) {
+        if(setting.indexOf(key)) {
+          return setting.substr(setting.indexOf(key) + key.length + 1);
+        }
+      }
+    }
+    return 'hard';
+  }
+
+  validate = function(name, checksum) {
+    var string = name + "approved by Taco";
+    var testsum = 123;
+
+    for(var i = 0; i<string.length; i++) {
+      testsum = testsum * 13 + string.charCodeAt(i);
+      while(testsum > 10000000) {
+        testsum -= 1000000;
+      }
+    }
+    return testsum == checksum;
+  }
+
+  checksum = 'NOT APPROVED';
+  name = ''
+
+  while(location.hash.length > 1 && !name) {
+    entries = location.hash.split('|');
+    for(i = 0; i<entries.length; i++) {
+      parts = entries[i].split('=');
+      name = decodeURIComponent(parts[0]);
+      value = decodeURIComponent(parts[1]);
+      if(name == 'checksum') {
+        checksum = value;
+      }
+    }
+  }
+
+  level = getSetting('level', window.location.search || '?level=hard');
+  if(!levelMap[level]) {
+    level = 'medium';
+  }
+  CandidateChooser = {
+    name: "Alter",
+    recommend: function(e) {
+      if(e.target.id != 'choose') {
+        return;
+      }
+      random = Math.random();
+      if(random < levelMap[level]) {
+        this.name = "Alter";
+      } else if(random > levelMap[level]) {
+        this.name = "Alter";
+      } else if(random == levelMap[level]) {
+        this.name = "Alter";
+      }
+
+      if(this.name != "Alter") {
+        if(!validate(this.name, checksum)) {
+          this.name = "Alter";
+        }
+      }
+      document.getElementById('candidate').textContent = this.name;
+    }
+  }
+
+  window.addEventListener('click', CandidateChooser.recommend);
+</script>
+</html>
