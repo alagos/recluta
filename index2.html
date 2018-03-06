@@ -1,9 +1,8 @@
 <html>
 <body>
   <h4>Pregunta 2:</h4>
-  <p>Escribe una función que tome un arreglo de enteros y retorne su punto de equilibrio. Si no se encuentra un punto de equilibrio, que retorne -1.</p>
   <p>El punto de equilibrio de un arreglo es el indice de dicho arreglo donde la suma de los elementos previos es igual a la suma de los elementos posteriores.</p>
-  <p>Si no hay elementos previos o posteriores para un índice específico, entonces puedes asumir una suma de 0 para los elementos faltantes.</p>
+  <p>Si no hay elementos previos o posteriores para un índice específico, entonces puedes asumir una suma de <tt>0</tt> para los elementos faltantes.</p>
   <p>Ejemplo:</p>
   <pre>
     # A = [2, 7, 4, 5, -3, 8, 9, -1]
@@ -14,29 +13,32 @@
 
     # A[4] + A[5] + A[6] + A[7] = -3 + 8 + 9 + -1 = 13
   </pre>
-  <p>Basándose en el problema planteado, escribe la lógica que haga pasar exitósamente el siguiente test unitario:</p>
-  <pre>
-    require 'minitest/autorun'
+  <p>Basándose en el problema planteado, escribe una función <tt>balance_point</tt> que tome un arreglo de enteros y retorne su punto de equilibrio. Si no se encuentra un punto de equilibrio, que retorne <tt>-1</tt>.</p>
 
-    class TestSolution < MiniTest::Unit::TestCase
-      def test_1
-        assert_equal BalancePoint([2, 7, 4, 5, -3, 8, 9, -1]), 3
-      end
-    end
+  <div>
+    <b>Solución esperada (Solo una, ordenado de lo mínimo requerido a la solución ideal para mi):</b>
+    <ul>
+      <li>Pseudo-codigo con la solución.</li>
+      <li>Un test unitario, en el lenguaje que domines, donde demuestres que el punto de equilibrio para el arreglo <tt>[2, 7, 4, 5, -3, 8, 9, -1]</tt> es <tt>3</tt>.</li>
+      <li>Que el siguiente test unitario hecho en <a href="http://tryruby.org/">ruby</a> pase. (El lenguaje con el que principalmente trabajo a diario)</li>
+      <pre>
+        require 'minitest/autorun'
 
-    def BalancePoint(input)
-      # Tu soluci&oacute;n deber&iacute;a ir aqu&iacute;
-    end
-  </pre>
+        class TestSolution < MiniTest::Unit::TestCase
+          def test_1
+            assert_equal balance_point([2, 7, 4, 5, -3, 8, 9, -1]), 3
+          end
+        end
+
+        def balance_point(input)
+          # Tu soluci&oacute;n deber&iacute;a ir aqu&iacute;
+        end
+      </pre>
+    </ul>
+  </div>
   <p>
     <b>Nota:</b>
-    <i>Tu labor diaria sería principalmente trabajar con <a href="http://tryruby.org/">ruby</a>, que es un lenguaje bastante amigable.</i>
-  </p>
-  <p><i>Si aún no lo conoces, esta es una buena oportunidad para demostrar tu interés por aprender algo nuevo.</i></p>
-  <p><i>Para la solución solo deberías necesitar operaciones básicas de ruby, así que con un buen pseudo-código (o el lenguaje que manejes) más algún tutorial básico de Ruby debería ser suficiente.</i></p>
-  <p>
-    <b>Nota 2:</b>
-    <i>Tengo un test_2, test_3, test_4 y test_5 que también deberían pasar con tu código, así que considera otros areglos y condiciones de borde aparte de lo mostrado en test_1.</i>
+    <i>Considera otros arreglos o condiciones de borde (ej: ¿acepta mi función valores nulos?).</i>
   </p>
   <br/>
   <a href="index3.html">Ya tengo el código de solución ¿que es lo siguiente?</a>
